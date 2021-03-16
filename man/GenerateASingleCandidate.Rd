@@ -16,6 +16,9 @@ GenerateASingleCandidate(data, Class, col, Prob)
 
 \item{Prob}{Minimum confidence level to generate sample}
 }
+\value{
+A dataframe containing a novel sample if it satisfies the confidence given in Prob, otherwise NA
+}
 \description{
 \code{GenerateASingleCandidate} Generates a novel sample from a target class and evaluate it against the other classes to check if it satisfies the confidence level
 returns NA if the generated sample does not satisfy the condition, otherwise returns novel sample

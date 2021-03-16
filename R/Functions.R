@@ -19,6 +19,10 @@
 #'\code{ObtainCandidate} Asks for a vector and returns a value along with the range it is contained in the attribute
 #' Is used alongside other functions when generating a new sample
 #' @param Dado vector containing an attribute of your dataframe
+#' @return Obtains a sample of an attribute based on their possible values, it is a part of the \code{Generate} function
+#' #' \itemize{
+#'   \item Retorno - A value of the same class as the function input
+#' }
 ObtainCandidate<-function(Dado){
 
   if(class(Dado) %in% c('factor','character'))
@@ -51,6 +55,16 @@ ObtainCandidate<-function(Dado){
 #' returns novel sample along with intervals it contained to revalidate it using confidence levels
 #' @param data Dataframe
 #' @param regression if we are to generate data for regression or classification (will the data be conditioned on a certain class)
+#' @return if regression is true returns a dataframe, if false returns a list.
+#' #' \itemize{
+#'   \item Frame - Datafrane containing generated sample
+#'   \item Info information to be used by GenerateASingleCandidate to check if the sample satisfies the confidence condition
+#' }
+#' @examples
+#' # basic usage of Generate
+#' Generate(iris,regression=TRUE)
+
+
 #'@export
 
 Generate<-function(data,regression=FALSE){
@@ -87,8 +101,10 @@ Generate<-function(data,regression=FALSE){
 #' @param Class The target class
 #' @param col Column the target class is located in the dataframe
 #' @param Prob Minimum confidence level to generate sample
-
-
+#' @return A dataframe containing a novel sample if it satisfies the confidence given in Prob, otherwise NA
+#' #' \itemize{
+#'   \item Alvo - dataframe containing a novel sample
+#' }
 
 GenerateASingleCandidate<-function(data,Class,col,Prob){ #data se refere ao teu conjunto de treinamento, Class a classe que vai Generate dados
   #data[,col]=as.numeric(as.character(data[,col]))
@@ -128,6 +144,14 @@ GenerateASingleCandidate<-function(data,Class,col,Prob){ #data se refere ao teu 
 #' @param col column of the dataframe which contains the class
 #' @param Prob Minimum confidence level to generate the sample
 #' @param amount Number of novel samples to be generated
+#' @return A dataframe containing novel samples of the class \code{Class} that satisfies \code{Prob} confidence.
+#' #' \itemize{
+#'   \item Dados - dataframe containing the novel samples
+#' }
+#' @examples
+#' # basic usage of GenerateMultipleCandidates
+#' GenerateMultipleCandidates(iris,Class='virginica',col=5,Prob=0.3,amount=10)
+
 #'@export
 
 GenerateMultipleCandidates<-function(data,Class,col,Prob,amount){
@@ -137,6 +161,8 @@ GenerateMultipleCandidates<-function(data,Class,col,Prob,amount){
   }
   Dados=do.call(rbind,Dados)
   Dados=Dados[stats::complete.cases(Dados),]
+  if(class(Dados) != 'data.frame')
+    return (NA)
   names(Dados)=names(data)
   return(Dados)
 }

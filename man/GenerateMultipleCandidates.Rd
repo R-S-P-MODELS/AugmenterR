@@ -17,6 +17,13 @@ GenerateMultipleCandidates(data, Class, col, Prob, amount)
 
 \item{amount}{Number of novel samples to be generated}
 }
+\value{
+A dataframe containing novel samples of the class \code{Class} that satisfies \code{Prob} confidence.
+}
 \description{
 \code{GenerateMultipleCandidates} Asks for a dataframe and some parameters and returns multiple novel samples from the target class
+}
+\examples{
+# basic usage of GenerateMultipleCandidates
+GenerateMultipleCandidates(iris,Class='virginica',col=5,Prob=0.3,amount=10)
 }

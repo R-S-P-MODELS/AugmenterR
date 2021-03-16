@@ -12,7 +12,14 @@ Generate(data, regression = FALSE)
 
 \item{regression}{if we are to generate data for regression or classification (will the data be conditioned on a certain class)}
 }
+\value{
+if regression is true returns a dataframe, if false returns a list.
+}
 \description{
 \code{Generate} Asks for a dataframe and generates a new sample
 returns novel sample along with intervals it contained to revalidate it using confidence levels
+}
+\examples{
+# basic usage of Generate
+Generate(iris,regression=TRUE)
 }

@@ -1,10 +1,22 @@
 Package: AugmenterR
 Type: Package
-Title: Data augmentation for machine learning on tabular data
+Title: Data Augmentation for Machine Learning on Tabular Data
 Version: 0.1.0
-Author: Rafael S. Pereira, Henrique Matheus
+Authors@R: 
+  c(person("Rafael",
+           family = "S. Pereira",
+           role = c("aut", "cre","cph"),
+           email = "r.s.p.models@gmail.com"),           
+    person("Henrique Matheus",
+           family = "ferreira da silva",
+           role = c("aut","cph"),
+	   email="ferreirasilva.matheuss@gmail.com"
+           ),
+    person("Fabio",
+           family = "A.M Porto",
+           role=c("aut", "ths","cph") ) )
 Maintainer: Rafael S. Pereira <r.s.p.models@gmail.com>
-Description: This package implements a data augmentation technique based on conditional entropy
+Description: Implementation of a data augmentation technique based on conditional entropy
     It was devised by both authors during their masters and is discussed in detail in the second author dissertation.
     It is able to create novel samples conditioned on a desired value of a categorical attribute, as a way to augment data for classification tasks
     Tests discussed in the dissertation and future paper present that the technique satisfies several statistical assumptions for the novel samples.
@@ -12,4 +24,10 @@ Description: This package implements a data augmentation technique based on cond
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Suggests:
+    knitr,
+    ggplot2,
+    markdown    
+VignetteBuilder: 
+    knitr
 RoxygenNote: 6.1.0.9000
