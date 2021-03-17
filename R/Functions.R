@@ -108,6 +108,7 @@ Generate<-function(data,regression=FALSE){
 
 GenerateASingleCandidate<-function(data,Class,col,Prob){ #data se refere ao teu conjunto de treinamento, Class a classe que vai Generate dados
   #data[,col]=as.numeric(as.character(data[,col]))
+  out<-tryCatch({
   Cand=Generate(data[data[,col]==Class,]  )
   Alvo=Cand$Frame
   Probs=Cand$Info
@@ -132,7 +133,10 @@ GenerateASingleCandidate<-function(data,Class,col,Prob){ #data se refere ao teu 
   if(as.numeric(Distribuicao[which(names(Distribuicao)==Class)]>=Prob)  )
     return(Alvo)
   return(NA)
-
+  },error=function(cond){
+    return(NA)
+  } )
+  return(out)
 }
 
 
